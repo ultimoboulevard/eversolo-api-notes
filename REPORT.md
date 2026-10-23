@@ -27,7 +27,7 @@ The Eversolo DMP-A6 can be controlled over the local network through an undocume
 ## 2. Scope and method
 
 - **Unit:** one DMP-A6, used daily in a multi-room setup with Sonos and a custom iOS player, May–October 2026.
-- **Firmware:** findings from July 2026 onwards are on v1.5.90 (released 22 July 2026). Earlier findings are on the previous firmware. The firmware of the unit was not re-checked at the time of publication.
+- **Firmware:** findings from July 2026 onwards are on v1.5.90 (released 22 July 2026), confirmed on the unit on 23 October 2026. Earlier findings are on the previous firmware.
 - **How the API was mapped:**
   - captures of the official app's traffic (Eversolo Control 1.2.76, iOS) through a proxy;
   - one-off probe scripts for each behaviour, including dose-response runs with a control condition;
@@ -96,7 +96,7 @@ All endpoints below are `GET http://<device>:9529/...` and return JSON with a `s
 | Display mode | Verified | `/ZidooMusicControl/v2/changVUDisplay` (spelt "chang") | Fixed three-state cycle: 0 = cover, 1 = VU meter, −1 = home. There is no direct setter (six candidate names return 405), so you reach a mode by cycling and reading the response. |
 | Screen on/off | Verified, blind | `setPowerOption?tag=screen` | Blind toggle. Whether the screen is on is not reported anywhere. |
 | Native ReplayGain | Verified | `/SystemSettings/playSettings/getReplaygainList`, then `setReplaygain?index=N` | 0 = Off, 1 = Track, 2 = Album. Confirm by reading `currentIndex` back. |
-| Model information | Verified | `/ZidooControlCenter/getModel` | Useful as a reachability check. |
+| Model information | Verified | `/ZidooControlCenter/getModel` | Reports model, firmware, device name, `net_mac` and `wif_mac` (the MAC for Wake-on-LAN can be read here), plus capability flags such as `ableRemoteSleep`, `ableRemoteShutdown`, `ableRemoteReboot`, `hasMultroom`, `hasDrcSetting`, `hasDspSetting`, `hasEqSetting`. The power commands those flags refer to were not tested. Useful as a reachability check. |
 | Wake from network standby | **Not validated** | Wake-on-LAN | In network standby the HTTP API does not answer at all. Wake-on-LAN code exists in our system but has not been validated on this unit. It also needs WOL enabled in the device settings. |
 
 ---

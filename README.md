@@ -30,7 +30,7 @@ Python 3.8+, standard library only. By default the script only reads; it sends n
 
 ## What is not covered
 
-Inputs other than the internal player and coaxial, output switching, power commands, other models in the range, and firmware later than v1.5.90. Wake-on-LAN is noted but not validated.
+Inputs other than the internal player and coaxial, output switching, power commands, other models in the range, and firmware later than v1.5.90. Wake-on-LAN is noted but not validated (the device does report its MAC addresses in `getModel`).
 
 ## Licences
 
